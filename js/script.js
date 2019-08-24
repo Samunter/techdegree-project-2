@@ -53,4 +53,44 @@ function showPage(list, page) {
    functionality to the pagination buttons.
 ***/
 
+function appendPageLinks(list) {
+  const numberOfPages = Math.ceil(list.length / itemsPerPage);
+  console.log('Number of pages', numberOfPages);
+
+  const div = document.createElement('div');
+  div.className = 'pagination';
+  console.log('div', div);
+  document.querySelector('.page').appendChild(div);
+  const ul = document.createElement('ul');
+  div.appendChild(ul);
+  for (let i = 1; i <= numberOfPages; i++) {
+    const li = document.createElement('li');
+    ul.appendChild(li);
+    const a = document.createElement('a');
+    a.innerHTML = i;
+    if (a.innerHTML === '1') {
+      a.className = 'active';
+    }
+    a.href = '#';
+    li.appendChild(a);
+  }
+  ul.addEventListener('click', e => {
+    console.log('target', e.target);
+    if (e.target.tagName == 'A') {
+      const links = document.querySelectorAll('a');
+      console.log('links', links);
+      for (let i = 0; i < numberOfPages; i++) {
+        links[i].className = '';
+      }
+      const pageNumber = parseInt(e.target.innerHTML);
+      console.log('page number', pageNumber);
+      e.target.className = 'active';
+      showPage(listItems, pageNumber);
+    }
+  });
+}
+
+appendPageLinks(listItems);
+showPage(listItems, 1);
+
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
