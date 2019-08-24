@@ -34,6 +34,20 @@ const itemsPerPage = 10;
        "invoke" the function 
 ***/
 
+function showPage(list, page) {
+  const startIndex = page * itemsPerPage - itemsPerPage;
+  const endIndex = page * itemsPerPage;
+  console.log('startIndex', startIndex, 'endIndex', endIndex);
+
+  for (let i = 0; i < list.length; i++) {
+    if (i >= startIndex && i < endIndex) {
+      list[i].style.display = 'block';
+    } else {
+      list[i].style.display = 'none';
+    }
+  }
+}
+
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
