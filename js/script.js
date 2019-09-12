@@ -35,8 +35,8 @@ function appendPageLinks(list) {
     const li = document.createElement('li');
     ul.appendChild(li);
     const a = document.createElement('a');
-    a.innerHTML = i;
-    if (a.innerHTML === '1') {
+    a.textContent = i;
+    if (a.textContent === '1') {
       //'active' applies css styling
       a.className = 'active';
     }
@@ -47,7 +47,7 @@ function appendPageLinks(list) {
   ul.addEventListener('click', e => {
     if (e.target.tagName == 'A') {
       const links = document.querySelectorAll('a');
-      const pageNumber = parseInt(e.target.innerHTML);
+      const pageNumber = parseInt(e.target.textContent);
       //remove 'active' class from all links
       for (let i = 0; i < numberOfPages; i++) {
         links[i].className = '';
